@@ -109,8 +109,10 @@ function myTimer() {
     if (time === 0 || step === options.length - 1) {
         quizChoiceList.setAttribute("style", "display: none");
         quizQuestion.textContent = "GAME OVER";
+        gameMode = 1;
         startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
         startButton.setAttribute("style", "display: ");
+        restartButton.setAttribute("style", "displau: ");
         myStopFunction();
         
     } else {
@@ -134,8 +136,9 @@ quizMenu.addEventListener("click", function(event) {
         //pass element into checkAnswer function
         console.log("step is", step);
         console.log(quizItems.length)
+        renderChoices();
     }
-    renderChoices();
+    
 });
 
 startButton.addEventListener("click", function(event) {
