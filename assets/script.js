@@ -78,11 +78,11 @@ function checkAnswer(element) {
         if(element.textContent === options[step].choices[i]) {
             if (options[step].correct === i) {
                 console.log("correct");
-                quizMenu.setAttribute("style", "background-color: green;");
+                quizMenu.setAttribute("style", "background-color: rgb(80, 214, 147);");
                 step++;
             } else {
                 console.log("wrong, try again");
-                quizMenu.setAttribute("style", "background-color: red;");
+                quizMenu.setAttribute("style", "background-color: rgb(196, 78, 78)");
                 misses++;
             }
         }
