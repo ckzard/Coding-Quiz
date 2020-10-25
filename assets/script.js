@@ -27,27 +27,27 @@ var gameMode = 0;
 
 //list of question/choices objects to cycle through
 var options = [{
-    question: "In Aladdin, what is the name of Jasmine's pet tiger?",
-    choices: ["Rajah", "Bo", "Iago", "Jack"],
+    question: "JavaScript is...",
+    choices: ["Object based", "Subjective", "Objective", "Evil"],
     correct: 0,
     },
     {
-    question: "In Peter Pan, Captain Hook had a hook on which part of his body?",
-    choices: ["Right Foot", "Left Hand", "Left Foot", "Right Hand"],
-    images:["assets/images/captainhook.gif"],
+    question: "What does the following expression return? 1 + 5 + ' bottles of milk'",
+    choices: ["15 bottles of milk", "6 bottles of milk", "undefined. An exception is thrown", "5 bottles of milk"],
+    images:[""],
     correct: 1,
     },
     {
-    question: "In the Lion King, where does Mufasa and his family live?",
-    choices: ["Tugetti Plains", "Mugato Jungle", "Courage Dunes", "Pride Rock"],
-    images:["assets/images/desert.gif"],
+    question: "How do you create an object in JavaScript?",
+    choices: ["var obj = [];", "function Foo() {} var obj = new Foo()", "var obj = new Object()", "All of these work"],
+    images:[""],
     correct: 3,
 
     },
     {
     question: "GAME OVER",
     choices: [""],
-    images:["assets/images/desert.gif"],
+    images:[""],
     correct: 99999999999,
     
     }
@@ -58,6 +58,7 @@ function init () {
     quizQuestion.textContent = "Javascript Coding Quiz!";
     quizChoiceList.setAttribute("style", "display: none");
     restartButton.setAttribute("style", "display: none");
+    
 }
 
 function renderChoices() {
