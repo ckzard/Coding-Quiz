@@ -25,3 +25,7 @@ ul {
     border: solid black;
     margin: 10px;
 }
+
+.timer {
+    text-align: center;
+}

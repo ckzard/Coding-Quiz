@@ -61,7 +61,7 @@ function renderChoices() {
     quizChoiceList.setAttribute("style", "display: ");
     if (step == quizItems.length - 1) {
         console.log("GAMEOVER");
-        quizChoiceList.setAttribute("style", "display: none")
+        quizChoiceList.setAttribute("style", "display: none");
         startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
         startButton.setAttribute("style", "display: ");
     }
@@ -99,7 +99,12 @@ function startTimer() {
 function myTimer() {
     //stops timer if it reaches 0 or the end of questions
     if (time === 0 || step === options.length - 1) {
+        quizChoiceList.setAttribute("style", "display: none");
+        quizQuestion.textContent = "GAME OVER";
+        startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
+        startButton.setAttribute("style", "display: ");
         myStopFunction();
+        
     } else {
         time--;
         quizTime.textContent = time;
