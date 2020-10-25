@@ -8,6 +8,7 @@ var quizItems = quizChoiceList.getElementsByTagName("button");
 var quizMenu = document.querySelector(".quizMenu"); 
 
 var startButton = document.querySelector("#startButton");
+//targets the startbutton
 
 var quizTime = document.querySelector(".timer");
 //targets the timer element
@@ -15,9 +16,13 @@ var quizTime = document.querySelector(".timer");
 var step = 0;
 //tracker variable to know which question i am on
 
-var time = 31;
+var time = 10;
 //setting time at 60
 
+var misses = 0;
+//tracks player mistakes
+
+//list of question/choices objects to cycle through
 var options = [{
     question: "In Aladdin, what is the name of Jasmine's pet tiger?",
     choices: ["Rajah", "Bo", "Iago", "Jack"],
@@ -45,7 +50,7 @@ var options = [{
     }
 
 ]
-
+//PRIMARY GAME FUNCTIONS (INITIALIZE GAME STATE, RENDER QUESTION/OPTIONS, CHECK ANSWER) --------------------------------------
 function init () {
     quizQuestion.textContent = "Javascript Coding Quiz!";
     quizChoiceList.setAttribute("style", "display: none");
@@ -57,6 +62,8 @@ function renderChoices() {
     if (step == quizItems.length - 1) {
         console.log("GAMEOVER");
         quizChoiceList.setAttribute("style", "display: none")
+        startButton.textContent = "Score: " + time * 3;
+        startButton.setAttribute("style", "display: ");
     }
     for (let i = 0; i < quizItems.length; i++) {
         quizQuestion.textContent = options[step].question;
@@ -76,23 +83,26 @@ function checkAnswer(element) {
             } else {
                 console.log("wrong, try again");
                 quizMenu.setAttribute("style", "background-color: red;");
+                misses++;
             }
         }
         
     }
 }
-// TIMING FUNCTIONS 
+
+// TIMING FUNCTIONS --------------------------------------
 function startTimer() {
     var myVar = setInterval(myTimer, 1000);
     renderChoices();
 }
 
 function myTimer() {
-  time--;
-  quizTime.textContent = time;
-
-  if (time <= 0) {
-    myStopFunction();
+    //stops timer if it reaches 0 or the end of questions
+    if (time === 0 || step === options.length - 1) {
+        myStopFunction();
+    } else {
+        time--;
+        quizTime.textContent = time;
     }
 }
 
@@ -100,6 +110,7 @@ function myStopFunction() {
         clearInterval(myVar);
 }
 
+// EVENT LISTENERS --------------------------------------
 quizMenu.addEventListener("click", function(event) {
     //event listener for click choices
     var element = event.target;
@@ -116,7 +127,7 @@ quizMenu.addEventListener("click", function(event) {
 
 startButton.addEventListener("click", function(event) {
     startTimer();
-    startButton.setAttribute("style", "display: none")
+    startButton.setAttribute("style", "display: none");
 })
 
 init();
