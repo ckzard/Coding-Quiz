@@ -26,6 +26,8 @@ var misses = 0;
 var gameMode = 0;
 //gamemode is 0 while active, and it is zero when game over
 
+var myVar = 0; 
+
 //list of question/choices objects to cycle through
 var options = [{
     question: "JavaScript is...",
