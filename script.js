@@ -5,10 +5,18 @@ var quizChoiceList = document.querySelector(".quizChoices");
 var quizItems = quizChoiceList.getElementsByTagName("button");
 //quizChoices is the UL, then select off that using quizItems to iterate through list items
 
-var quizMenu = document.querySelector(".quizMenu");
+var quizMenu = document.querySelector(".quizMenu"); 
+
+var startButton = document.querySelector("#startButton");
+
+var quizTime = document.querySelector(".timer");
+//targets the timer element
 
 var step = 0;
 //tracker variable to know which question i am on
+
+var time = 31;
+//setting time at 60
 
 var options = [{
     question: "In Aladdin, what is the name of Jasmine's pet tiger?",
@@ -23,7 +31,7 @@ var options = [{
     },
     {
     question: "In the Lion King, where does Mufasa and his family live?",
-    choices: ["Rocky Mountain", "Forest", "Desert", "Pride Rock"],
+    choices: ["Tugetti Plains", "Mugato Jungle", "Courage Dunes", "Pride Rock"],
     images:["assets/images/desert.gif"],
     correct: 3,
 
@@ -38,8 +46,14 @@ var options = [{
 
 ]
 
+function init () {
+    quizQuestion.textContent = "Javascript Coding Quiz!";
+    quizChoiceList.setAttribute("style", "display: none");
+}
+
 function renderChoices() {
     //display options
+    quizChoiceList.setAttribute("style", "display: ");
     if (step == quizItems.length - 1) {
         console.log("GAMEOVER");
         quizChoiceList.setAttribute("style", "display: none")
@@ -53,7 +67,7 @@ function renderChoices() {
 
 function checkAnswer(element) {
     //checks the answer to see if its correct
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < options[step].choices.length; i++) {
         if(element.textContent === options[step].choices[i]) {
             if (options[step].correct === i) {
                 console.log("correct");
@@ -67,20 +81,46 @@ function checkAnswer(element) {
         
     }
 }
+// TIMING FUNCTIONS 
+function startTimer() {
+    var myVar = setInterval(myTimer, 1000);
+    renderChoices();
+}
+
+function myTimer() {
+  time--;
+  quizTime.textContent = time;
+
+  if (time <= 0) {
+    myStopFunction();
+    }
+}
+
+function myStopFunction() {
+        clearInterval(myVar);
+}
 
 quizMenu.addEventListener("click", function(event) {
     //event listener for click choices
     var element = event.target;
+    //assigns clicked element to var element
 
     if (element.matches("button") === true) {
         checkAnswer(element);
+        //pass element into checkAnswer function
         console.log("step is", step);
         console.log(quizItems.length)
     }
     renderChoices();
 });
 
-renderChoices();
+startButton.addEventListener("click", function(event) {
+    startTimer();
+    startButton.setAttribute("style", "display: none")
+})
+
+init();
+
 
 
 
