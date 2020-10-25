@@ -62,7 +62,7 @@ function renderChoices() {
     if (step == quizItems.length - 1) {
         console.log("GAMEOVER");
         quizChoiceList.setAttribute("style", "display: none")
-        startButton.textContent = "Score: " + (time * 3 - (misses * 2));
+        startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
         startButton.setAttribute("style", "display: ");
     }
     for (let i = 0; i < quizItems.length; i++) {
