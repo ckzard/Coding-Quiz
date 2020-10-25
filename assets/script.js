@@ -24,6 +24,7 @@ var misses = 0;
 //tracks player mistakes
 
 var gameMode = 0;
+//gamemode is 0 while active, and it is zero when game over
 
 //list of question/choices objects to cycle through
 var options = [{
@@ -136,7 +137,10 @@ quizMenu.addEventListener("click", function(event) {
         //pass element into checkAnswer function
         console.log("step is", step);
         console.log(quizItems.length)
-        renderChoices();
+        if(gameMode === 0) {
+            renderChoices();
+        }
+        
     }
     
 });
@@ -153,6 +157,7 @@ restartButton.addEventListener("click", function(event) {
     if(gameMode === 1) {
         location.reload();
     }
+    
 })
 
 init();
