@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: 'Bellota', cursive;
+}
+
+.quizMenu {
+    text-align: center;
+}
+/* centers the primary quiz menu */
+
+ul {
+    list-style-type: none;
+}
+/* removes the bullets from ul */
+
+.btn {
+    margin: 10px;
+    background-color: blueviolet;
+}
+
+.quizMenu {
+    background-color: rgb(230, 228, 228);
+    border: solid black;
+    margin: 10px;
+}
