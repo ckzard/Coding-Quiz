@@ -88,6 +88,7 @@ function checkAnswer(element) {
                 step++;
             } else {
                 console.log("wrong, try again");
+                //add disabled attribute to buttons after clicked if wrong choice here
                 quizMenu.setAttribute("style", "background-color: rgb(196, 78, 78)");
                 misses++;
             }
