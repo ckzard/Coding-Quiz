@@ -8,6 +8,7 @@ var quizItems = quizChoiceList.getElementsByTagName("button");
 var quizMenu = document.querySelector(".quizMenu"); 
 
 var startButton = document.querySelector("#startButton");
+var restartButton = document.querySelector("#restartButton");
 //targets the startbutton
 
 var quizTime = document.querySelector(".timer");
@@ -21,6 +22,8 @@ var time = 10;
 
 var misses = 0;
 //tracks player mistakes
+
+var gameMode = 0;
 
 //list of question/choices objects to cycle through
 var options = [{
@@ -54,6 +57,7 @@ var options = [{
 function init () {
     quizQuestion.textContent = "Javascript Coding Quiz!";
     quizChoiceList.setAttribute("style", "display: none");
+    restartButton.setAttribute("style", "display: none");
 }
 
 function renderChoices() {
@@ -64,6 +68,8 @@ function renderChoices() {
         quizChoiceList.setAttribute("style", "display: none");
         startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
         startButton.setAttribute("style", "display: ");
+        restartButton.setAttribute("style", "display: ");
+        gameMode = 1;
     }
     for (let i = 0; i < quizItems.length; i++) {
         quizQuestion.textContent = options[step].question;
@@ -133,6 +139,15 @@ quizMenu.addEventListener("click", function(event) {
 startButton.addEventListener("click", function(event) {
     startTimer();
     startButton.setAttribute("style", "display: none");
+    if(gameMode === 1) {
+        //add functionality to when clicked to add score to highscores
+    }
+})
+
+restartButton.addEventListener("click", function(event) {
+    if(gameMode === 1) {
+        location.reload();
+    }
 })
 
 init();
