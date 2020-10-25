@@ -2,4 +2,4 @@
 
 Link to site: https://ckzard.github.io/Coding-Quiz/
 
-![Front page](/assets/images/quizShot.png)
+![Front page](/assets/images/quizShot2.png)
