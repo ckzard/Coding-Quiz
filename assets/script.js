@@ -3,7 +3,7 @@ var quizQuestion = document.querySelector(".quizQuestion");
 
 var quizChoiceList = document.querySelector(".quizChoices");
 var quizItems = quizChoiceList.getElementsByTagName("button");
-//quizChoices is the UL, then select off that using quizItems to iterate through list items
+//quizChoices is the UL, then select off that using quizItems to iterate through list items(***********)
 
 var quizMenu = document.querySelector(".quizMenu"); 
 
@@ -14,10 +14,20 @@ var restartButton = document.querySelector("#restartButton");
 var quizTime = document.querySelector(".timer");
 //targets the timer element
 
+var inputSection = document.querySelector(".highscoreInputSection");
+//targets highscore submit section after gameover
+
+var highscoreList = document.querySelector(".highscoreList");
+
+//highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
+
+var highscoreSubmit = document.querySelector(".highscoreSubmit");
+//targets the highscore submit button to add initials to scoreboard
+
 var step = 0;
 //tracker variable to know which question i am on
 
-var time = 10;
+var time = 60;
 //setting time at 60
 
 var misses = 0;
@@ -54,14 +64,15 @@ var options = [{
     correct: 99999999999,
     
     }
-
 ]
+
+
 //PRIMARY GAME FUNCTIONS (INITIALIZE GAME STATE, RENDER QUESTION/OPTIONS, CHECK ANSWER) --------------------------------------
 function init () {
     quizQuestion.textContent = "Javascript Coding Quiz!";
     quizChoiceList.setAttribute("style", "display: none");
     restartButton.setAttribute("style", "display: none");
-    
+    inputSection.setAttribute("style", "display: none");
 }
 
 function renderChoices() {
@@ -73,6 +84,7 @@ function renderChoices() {
         startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
         startButton.setAttribute("style", "display: ");
         restartButton.setAttribute("style", "display: ");
+        inputSection.setAttribute("style", "display: ");
         gameMode = 1;
     }
     for (let i = 0; i < quizItems.length; i++) {
@@ -100,6 +112,8 @@ function checkAnswer(element) {
         
     }
 }
+
+
 
 // TIMING FUNCTIONS --------------------------------------
 function startTimer() {
@@ -160,6 +174,12 @@ restartButton.addEventListener("click", function(event) {
         location.reload();
     }
     
+})
+
+highscoreSubmit.addEventListener("click", function(event) {
+    if(gameMode === 1) {
+        console.log(highscoreInput.value);
+    }
 })
 
 init();
