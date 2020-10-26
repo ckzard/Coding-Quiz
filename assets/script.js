@@ -14,12 +14,12 @@ var restartButton = document.querySelector("#restartButton");
 var quizTime = document.querySelector(".timer");
 //targets the timer element
 
-var inputSection = document.querySelector(".highscoreInputSection");
-//targets highscore submit section after gameover
-
 var highscoreList = document.querySelector(".highscoreList");
 
 //highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
+
+var inputSection = document.querySelector(".highscoreInputSection");
+//targets highscore submit section after gameover
 
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
@@ -37,6 +37,7 @@ var gameMode = 0;
 //gamemode is 0 while active, and it is zero when game over
 
 var myVar = 0; 
+//timing function variable
 
 //list of question/choices objects to cycle through
 var options = [{
@@ -143,6 +144,7 @@ function myStopFunction() {
 }
 
 // EVENT LISTENERS --------------------------------------
+
 quizMenu.addEventListener("click", function(event) {
     //event listener for click choices
     var element = event.target;
@@ -178,7 +180,10 @@ restartButton.addEventListener("click", function(event) {
 
 highscoreSubmit.addEventListener("click", function(event) {
     if(gameMode === 1) {
-        console.log(highscoreInput.value);
+        console.log(inputSection.value);
+        //store value in session storage/local storage
+        //reload page
+        //call function to manage/organize the highscore page
     }
 })
 
