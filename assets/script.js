@@ -17,8 +17,11 @@ var quizTime = document.querySelector(".timer");
 var inputSection = document.querySelector(".highscoreInputSection");
 //targets highscore submit section after gameover
 
-var highscoreList = document.querySelector(".highscoreList");
+var highscoreInput = document.querySelector(".highscoreInput");
+//targets higschore submit input box
 
+var highscoreList = document.querySelector(".highscoreList");
+var highscoreItem = document.querySelector(".highscoreItem");
 //highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
 
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
@@ -142,6 +145,9 @@ function myStopFunction() {
         clearInterval(myVar);
 }
 
+
+
+
 // EVENT LISTENERS --------------------------------------
 quizMenu.addEventListener("click", function(event) {
     //event listener for click choices
@@ -164,25 +170,43 @@ quizMenu.addEventListener("click", function(event) {
 startButton.addEventListener("click", function(event) {
     startTimer();
     startButton.setAttribute("style", "display: none");
-    if(gameMode === 1) {
-        //add functionality to when clicked to add score to highscores
-    }
 })
 
 restartButton.addEventListener("click", function(event) {
     if(gameMode === 1) {
         location.reload();
     }
-    
 })
 
 highscoreSubmit.addEventListener("click", function(event) {
     if(gameMode === 1) {
         console.log(highscoreInput.value);
+        console.log(time);
+        //logs highscore details in console
+        var user = {
+            userName: highscoreInput.value.trim(),
+          };
+        var scores = {
+            userScore: time,
+        }
+        //creates and object for user names, and then for score
+
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("score", JSON.stringify(scores));
+        //stores object in local storage(maybe change to session storage)
+        var lastUser = JSON.parse(localStorage.getItem("user"));
+        var lastScore = JSON.parse(localStorage.getItem("score"));
+        //creates variable that gets the user stored and then gets score
+        console.log(lastUser);
+        console.log(lastScore);
+        //logs the variables
+        
     }
 })
 
 init();
+console.log(highscoreItem);
+console.log(highscoreList);
 
 
 
