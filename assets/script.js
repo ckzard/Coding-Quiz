@@ -20,7 +20,8 @@ var highscoreInput = document.querySelector(".highscoreInput");
 //targets higschore submit input box
 var highscoreList = document.querySelector(".highscoreList");
 var highscoreItem = highscoreList.querySelector(".highscoreItem");
-//highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
+var highscoreScore = highscoreItem.querySelector(".userHighScore");
+//highscoreList is the UL, then select off that using highscoreItems to iterate through list tags, then highscore off that
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
 
@@ -188,21 +189,22 @@ highscoreSubmit.addEventListener("click", function(event) {
         }
         //creates and object for user names, and then for score
 
-        localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("score", JSON.stringify(scores));
+        sessionStorage.setItem("user", JSON.stringify(user));
+        sessionStorage.setItem("score", JSON.stringify(scores));
         //stores object in local storage(maybe change to session storage)
-        var lastUser = JSON.parse(localStorage.getItem("user"));
-        var lastScore = JSON.parse(localStorage.getItem("score"));
+        var lastUser = JSON.parse(sessionStorage.getItem("user"));
+        var lastScore = JSON.parse(sessionStorage.getItem("score"));
         //creates variable that gets the user stored and then gets score
-        console.log(lastUser);
-        console.log(lastScore);
+        console.log(lastUser.userName);
+        console.log(lastScore.userScore);
         //logs the variables
+        highscoreItem.textContent = lastUser.userName;
+        highscoreScore.textContent = lastScore.userScore;
+
     }
 })
 
 init();
-
-console.log(highscoreItem.textContent)
 
 
 
