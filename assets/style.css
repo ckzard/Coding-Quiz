@@ -12,6 +12,7 @@
 
 ul {
     list-style-type: none;
+    padding-left: 0px;
 }
 /* removes the bullets from ul */
 
@@ -25,6 +26,9 @@ ul {
     border: solid black;
     margin: 50px;
     padding: 50px;
+}
+.quizChoices {
+    margin-right: 10px;
 }
 
 .timer {
