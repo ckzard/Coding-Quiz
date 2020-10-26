@@ -37,7 +37,11 @@ var misses = 0;
 var gameMode = 0;
 //gamemode is 0 while active, and it is zero when game over
 
-var myVar = 0; 
+var myVar = 0;
+
+var user = [];
+
+var scores = [];
 
 //list of question/choices objects to cycle through
 var options = [{
@@ -74,6 +78,16 @@ function init () {
     quizChoiceList.setAttribute("style", "display: none");
     restartButton.setAttribute("style", "display: none");
     inputSection.setAttribute("style", "display: none");
+
+    //this checks session storage on initialize to get existing users and their scores, if they're both not empy it will add this data to key variables
+    var storedUsers = JSON.parse(sessionStorage.getItem("user"));
+    var storedScores = JSON.parse(sessionStorage.getItem("score"));
+    if (storedUsers !== null && storedScores !== null) {
+        user = storedUsers;
+        scores = storedScores;
+      }
+
+    renderHighscores();
 }
 
 function renderChoices() {
@@ -114,6 +128,19 @@ function checkAnswer(element) {
     }
 }
 
+function storeHighscores () {
+    sessionStorage.setItem("user", JSON.stringify(user));
+    sessionStorage.setItem("score", JSON.stringify(scores));
+    //stores data from both user/scores to sessionStorage to be saved and reused
+}
+
+function renderHighscores() {
+    //this section will render the highscores to the page
+    var users = JSON.parse(localStorage.getItem("user"));
+    var scores = JSON.parse(localStorage.getItem("score"));
+    highscoreItem.textContent = users + " " + scores;
+}
+
 
 
 // TIMING FUNCTIONS --------------------------------------
@@ -142,8 +169,6 @@ function myTimer() {
 function myStopFunction() {
         clearInterval(myVar);
 }
-
-
 
 
 // EVENT LISTENERS --------------------------------------
@@ -181,26 +206,12 @@ highscoreSubmit.addEventListener("click", function(event) {
         console.log(highscoreInput.value);
         console.log(time);
         //logs highscore details in console
-        var user = {
-            userName: highscoreInput.value.trim(),
-          };
-        var scores = {
-            userScore: time,
-        }
-        //creates and object for user names, and then for score
+        user.push(highscoreInput.value.trim());
+        scores.push(time);
+        highscoreInput.value = "";
 
-        sessionStorage.setItem("user", JSON.stringify(user));
-        sessionStorage.setItem("score", JSON.stringify(scores));
-        //stores object in local storage(maybe change to session storage)
-        var lastUser = JSON.parse(sessionStorage.getItem("user"));
-        var lastScore = JSON.parse(sessionStorage.getItem("score"));
-        //creates variable that gets the user stored and then gets score
-        console.log(lastUser.userName);
-        console.log(lastScore.userScore);
-        //logs the variables
-        highscoreItem.textContent = lastUser.userName;
-        highscoreScore.textContent = lastScore.userScore;
-
+        storeHighscores();
+        renderHighscores();
     }
 })
 
