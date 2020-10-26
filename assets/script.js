@@ -16,14 +16,11 @@ var quizTime = document.querySelector(".timer");
 
 var inputSection = document.querySelector(".highscoreInputSection");
 //targets highscore submit section after gameover
-
 var highscoreInput = document.querySelector(".highscoreInput");
 //targets higschore submit input box
-
 var highscoreList = document.querySelector(".highscoreList");
-var highscoreItem = document.querySelector(".highscoreItem");
+var highscoreItem = highscoreList.querySelector(".highscoreItem");
 //highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
-
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
 
@@ -200,14 +197,12 @@ highscoreSubmit.addEventListener("click", function(event) {
         console.log(lastUser);
         console.log(lastScore);
         //logs the variables
-        
     }
 })
 
 init();
-console.log(highscoreItem);
-console.log(highscoreList);
 
+console.log(highscoreItem.textContent)
 
 
 
