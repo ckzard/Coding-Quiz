@@ -14,15 +14,6 @@ var restartButton = document.querySelector("#restartButton");
 var quizTime = document.querySelector(".timer");
 //targets the timer element
 
-<<<<<<< HEAD
-var highscoreList = document.querySelector(".highscoreList");
-
-//highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
-
-var inputSection = document.querySelector(".highscoreInputSection");
-//targets highscore submit section after gameover
-
-=======
 var inputSection = document.querySelector(".highscoreInputSection");
 //targets highscore submit section after gameover
 var highscoreInput = document.querySelector(".highscoreInput");
@@ -31,7 +22,6 @@ var highscoreList = document.querySelector(".highscoreList");
 var highscoreItems = highscoreList.getElementsByTagName("li");
 var highscoreScores = highscoreList.getElementsByTagName("p");
 //TO ITERATE THROUGH document elements - highscoreList is the UL, then you have to select off it using the prev variable and getElementsbyTagName only (queryselector doesnt work)
->>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
 
