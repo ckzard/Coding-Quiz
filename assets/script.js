@@ -110,7 +110,7 @@ function init () {
 function renderChoices() {
     //display options
     quizChoiceList.setAttribute("style", "display: ");
-    if (step == quizItems.length - 1) {
+    if (step == options.length - 1) {
         console.log("GAMEOVER");
         quizChoiceList.setAttribute("style", "display: none");
         startButton.textContent = "Score: " + (time); //score CALCULATION
