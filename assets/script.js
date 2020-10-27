@@ -146,18 +146,31 @@ function renderHighscores() {
 
     var highestScore = 0;
     var highestUser = "";
-    
-    //Loop through highscoreItems and sets text content to user and score, listing 3 people (not in order)
-    for (let i = 0; i < highscoreItems.length; i++) {
-        if (scores[i]) {
-            highscoreItems[i].textContent = scores[i] + " - " + user[i];
-        } else {
-            highscoreItems[i].textContent = "-------------"
-        }
-        
+
+    for (let i = 0; i < scores.length; i++) {
+        var userScore = scores[i];
+        var userUser = user[i];
+
+        var li = document.createElement("li");
+        var p = document.createElement("p");
+
+        li.textContent = "Score: " + userScore;
+        p.textContent = "User: " + userUser;
+
+        li.appendChild(p);
+        highscoreList.appendChild(li);
+  
     }
     
-    // console.log(scoresRanked);
+    //Loop through highscoreItems and sets text content to user and score, listing 3 people (not in order)
+    // for (let i = 0; i < highscoreItems.length; i++) {
+    //     if (scores[i]) {
+    //         highscoreItems[i].textContent = scores[i] + " - " + user[i];
+    //     } else {
+    //         highscoreItems[i].textContent = "-------------"
+    //     }
+        
+    // }
     
 }
 
