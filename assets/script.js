@@ -25,6 +25,9 @@ var highscoreScores = highscoreList.getElementsByTagName("p");
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
 
+var highScoreView = document.querySelector(".highscores");
+//targets the top left view highscores link
+
 var step = 0;
 //tracker variable to know which question i am on
 
@@ -77,6 +80,7 @@ function init () {
     quizChoiceList.setAttribute("style", "display: none");
     restartButton.setAttribute("style", "display: none");
     inputSection.setAttribute("style", "display: none");
+    highscoreList.setAttribute("style", "display: none");
 
     //this checks session storage on initialize to get existing users and their scores, if they're both not empty it will add this data to global variables
     var storedUsers = JSON.parse(sessionStorage.getItem("user"));
@@ -95,7 +99,7 @@ function renderChoices() {
     if (step == quizItems.length - 1) {
         console.log("GAMEOVER");
         quizChoiceList.setAttribute("style", "display: none");
-        startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
+        startButton.textContent = "Score: " + (time); //score CALCULATION
         startButton.setAttribute("style", "display: ");
         restartButton.setAttribute("style", "display: ");
         inputSection.setAttribute("style", "display: ");
@@ -120,7 +124,7 @@ function checkAnswer(element) {
                 console.log("wrong, try again");
                 //add disabled attribute to buttons after clicked if wrong choice here
                 quizMenu.setAttribute("style", "background-color: rgb(196, 78, 78)");
-                misses++;
+                time-=10;
             }
         }
         
@@ -145,7 +149,12 @@ function renderHighscores() {
     
     //Loop through highscoreItems and sets text content to user and score, listing 3 people (not in order)
     for (let i = 0; i < highscoreItems.length; i++) {
-        highscoreItems[i].textContent = scores[i] + " - " + user[i];
+        if (scores[i]) {
+            highscoreItems[i].textContent = scores[i] + " - " + user[i];
+        } else {
+            highscoreItems[i].textContent = "-------------"
+        }
+        
     }
     
     // console.log(scoresRanked);
@@ -166,7 +175,7 @@ function myTimer() {
         quizChoiceList.setAttribute("style", "display: none");
         quizQuestion.textContent = "GAME OVER";
         gameMode = 1;
-        startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
+        startButton.textContent = "Score: " + (time); //score CALCULATION
         startButton.setAttribute("style", "display: ");
         restartButton.setAttribute("style", "displau: ");
         myStopFunction();
@@ -228,6 +237,17 @@ highscoreSubmit.addEventListener("click", function(event) {
         renderHighscores();
     }
 })
+
+highScoreView.addEventListener("click", function(event) {
+    if (user.length > 0) {
+        highscoreList.setAttribute("style", "display: ")
+    } else {
+        alert("Highscore list empty")
+    }
+    
+})
+
+
 
 init();
 
