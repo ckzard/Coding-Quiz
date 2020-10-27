@@ -46,6 +46,12 @@ var user = [];
 
 var scores = [];
 
+var usersRanked = [];
+var scoresRanked = [];
+
+var highestScore = 0;
+var highestUser = "";
+
 //list of question/choices objects to cycle through
 var options = [{
     question: "JavaScript is...",
@@ -145,6 +151,8 @@ function checkAnswer(element) {
     }
 }
 
+// HIGHSCORE AND SESSIONDATA STORAGE FUNCTIONS -------------------------------------------------------
+
 function storeHighscores () {
     sessionStorage.setItem("user", JSON.stringify(user));
     sessionStorage.setItem("score", JSON.stringify(scores));
@@ -155,11 +163,32 @@ function renderHighscores() {
     console.log(user);
     console.log(scores);
 
-    var usersRanked = [];
-    var scoresRanked = [];
+    sortHighscores();
 
-    var highestScore = 0;
-    var highestUser = "";
+    console.log(user);
+    console.log(scores);
+    
+    for (let i = 0; i < user.length; i++) {
+
+        var userScore = scores[i];
+        var userUser = user[i];
+
+        var li = document.createElement("li");
+        var p = document.createElement("p");
+
+        li.textContent = "Score: " + userScore;
+        p.textContent = "User: " + userUser;
+
+        li.appendChild(p);
+        highscoreList.appendChild(li);
+  
+    }
+    console.log(scoresRanked);
+    console.log(usersRanked);
+    
+}
+
+function sortHighscores() {
 
     for (let i = 0; i < scores.length; i++) {   
         highestScore = Math.max(...scores);
@@ -174,34 +203,9 @@ function renderHighscores() {
         usersRanked.push(highestUser);
         scoresRanked.push(highestScore);
     }
-    console.log(usersRanked);
-    console.log(scoresRanked)
 
-    for (let i = 0; i < scoresRanked.length; i++) {
-
-        var userScore = scoresRanked[i];
-        var userUser = usersRanked[i];
-
-        var li = document.createElement("li");
-        var p = document.createElement("p");
-
-        li.textContent = "Score: " + userScore;
-        p.textContent = "User: " + userUser;
-
-        li.appendChild(p);
-        highscoreList.appendChild(li);
-  
-    }
-    
-    //Loop through highscoreItems and sets text content to user and score, listing 3 people (not in order)
-    // for (let i = 0; i < highscoreItems.length; i++) {
-    //     if (scores[i]) {
-    //         highscoreItems[i].textContent = scores[i] + " - " + user[i];
-    //     } else {
-    //         highscoreItems[i].textContent = "-------------"
-    //     }
-        
-    // }
+    user = usersRanked;
+    scores = scoresRanked;
     
 }
 
@@ -283,6 +287,7 @@ highscoreSubmit.addEventListener("click", function(event) {
 })
 
 highScoreView.addEventListener("click", function(event) {
+    console.log(user.length)
     if (user.length > 0) {
         highscoreList.setAttribute("style", "display: ")
     } else {
