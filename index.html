@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
-        <a href=""><h3 class="highscores navbar-brand">VIEW HIGHSCORES</h3></a>
+        <button><h3 class="highscores navbar-brand">VIEW HIGHSCORES</h3></button>
         <h2 class="timer">0</h2>
     </nav>
 
@@ -36,7 +36,14 @@
         </div>
 
     </div>
-    <!-- TODO LIST: implement highscores, add more quetsions, update score calculation to meet criteria, add disabled to buttons (optional), adjust spacing -->
+
+    <div class="highscoreMenu">
+        <div class="highscoreBoard">
+            <ol class="highscoreList">
+            </ol>
+        </div>
+    </div>
+    <!-- TODO LIST: implement highscores ranked from highest to lowest, prevent text from leaving buttons when window width gets too small, add message instead of color to signify right or wrong -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

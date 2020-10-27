@@ -14,6 +14,7 @@ var restartButton = document.querySelector("#restartButton");
 var quizTime = document.querySelector(".timer");
 //targets the timer element
 
+<<<<<<< HEAD
 var highscoreList = document.querySelector(".highscoreList");
 
 //highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
@@ -21,8 +22,21 @@ var highscoreList = document.querySelector(".highscoreList");
 var inputSection = document.querySelector(".highscoreInputSection");
 //targets highscore submit section after gameover
 
+=======
+var inputSection = document.querySelector(".highscoreInputSection");
+//targets highscore submit section after gameover
+var highscoreInput = document.querySelector(".highscoreInput");
+//targets higschore submit input box
+var highscoreList = document.querySelector(".highscoreList");
+var highscoreItems = highscoreList.getElementsByTagName("li");
+var highscoreScores = highscoreList.getElementsByTagName("p");
+//TO ITERATE THROUGH document elements - highscoreList is the UL, then you have to select off it using the prev variable and getElementsbyTagName only (queryselector doesnt work)
+>>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
+
+var highScoreView = document.querySelector(".highscores");
+//targets the top left view highscores link
 
 var step = 0;
 //tracker variable to know which question i am on
@@ -36,8 +50,16 @@ var misses = 0;
 var gameMode = 0;
 //gamemode is 0 while active, and it is zero when game over
 
+<<<<<<< HEAD
 var myVar = 0; 
 //timing function variable
+=======
+var myVar = 0;
+
+var user = [];
+
+var scores = [];
+>>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
 
 //list of question/choices objects to cycle through
 var options = [{
@@ -59,13 +81,26 @@ var options = [{
 
     },
     {
+    question: "Primitive types are passed by :",
+    choices: ["Value", "Pointer", "Reference", "Email"],
+    images:[""],
+    correct: 0,
+
+    },
+    {
+    question: "Which is not a primitive data type in JavaScript?",
+    choices: ["Boolean", "Number", "String", "Character"],
+    images:[""],
+    correct: 3,
+
+    },
+    {
     question: "GAME OVER",
     choices: [""],
     images:[""],
     correct: 99999999999,
     
-    }
-]
+    }]
 
 
 //PRIMARY GAME FUNCTIONS (INITIALIZE GAME STATE, RENDER QUESTION/OPTIONS, CHECK ANSWER) --------------------------------------
@@ -74,15 +109,26 @@ function init () {
     quizChoiceList.setAttribute("style", "display: none");
     restartButton.setAttribute("style", "display: none");
     inputSection.setAttribute("style", "display: none");
+    highscoreList.setAttribute("style", "display: none");
+
+    //this checks session storage on initialize to get existing users and their scores, if they're both not empty it will add this data to global variables
+    var storedUsers = JSON.parse(sessionStorage.getItem("user"));
+    var storedScores = JSON.parse(sessionStorage.getItem("score"));
+    if (storedUsers !== null && storedScores !== null) {
+        user = storedUsers;
+        scores = storedScores;
+      }
+
+    renderHighscores();
 }
 
 function renderChoices() {
     //display options
     quizChoiceList.setAttribute("style", "display: ");
-    if (step == quizItems.length - 1) {
+    if (step == options.length - 1) {
         console.log("GAMEOVER");
         quizChoiceList.setAttribute("style", "display: none");
-        startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
+        startButton.textContent = "Score: " + (time); //score CALCULATION
         startButton.setAttribute("style", "display: ");
         restartButton.setAttribute("style", "display: ");
         inputSection.setAttribute("style", "display: ");
@@ -107,11 +153,71 @@ function checkAnswer(element) {
                 console.log("wrong, try again");
                 //add disabled attribute to buttons after clicked if wrong choice here
                 quizMenu.setAttribute("style", "background-color: rgb(196, 78, 78)");
-                misses++;
+                time-=10;
             }
         }
         
     }
+}
+
+function storeHighscores () {
+    sessionStorage.setItem("user", JSON.stringify(user));
+    sessionStorage.setItem("score", JSON.stringify(scores));
+    //stores data from both user/scores to sessionStorage to be saved and reused
+}
+
+function renderHighscores() {
+    console.log(user);
+    console.log(scores);
+
+    var usersRanked = [];
+    var scoresRanked = [];
+
+    var highestScore = 0;
+    var highestUser = "";
+
+    for (let i = 0; i < scores.length; i++) {   
+        highestScore = Math.max(...scores);
+        console.log(highestScore) 
+        for (let i = 0; i < scores.length; i++) {
+            if (scores[i] === highestScore) {
+                highestUser = user[i];
+                user.splice(i, 1);
+                scores.splice(i, 1);
+            }
+        }
+        usersRanked.push(highestUser);
+        scoresRanked.push(highestScore);
+    }
+    console.log(usersRanked);
+    console.log(scoresRanked)
+
+    for (let i = 0; i < scoresRanked.length; i++) {
+
+        var userScore = scoresRanked[i];
+        var userUser = usersRanked[i];
+
+        var li = document.createElement("li");
+        var p = document.createElement("p");
+
+        li.textContent = "Score: " + userScore;
+        p.textContent = "User: " + userUser;
+
+        li.appendChild(p);
+        highscoreList.appendChild(li);
+  
+    }
+    
+    //Loop through highscoreItems and sets text content to user and score, listing 3 people (not in order)
+    // for (let i = 0; i < highscoreItems.length; i++) {
+    //     if (scores[i]) {
+    //         highscoreItems[i].textContent = scores[i] + " - " + user[i];
+    //     } else {
+    //         highscoreItems[i].textContent = "-------------"
+    //     }
+        
+    // }
+    
 }
 
 
@@ -128,7 +234,7 @@ function myTimer() {
         quizChoiceList.setAttribute("style", "display: none");
         quizQuestion.textContent = "GAME OVER";
         gameMode = 1;
-        startButton.textContent = "Score: " + (time * 4 - (misses * 2)); //score CALCULATION
+        startButton.textContent = "Score: " + (time); //score CALCULATION
         startButton.setAttribute("style", "display: ");
         restartButton.setAttribute("style", "displau: ");
         myStopFunction();
@@ -142,6 +248,7 @@ function myTimer() {
 function myStopFunction() {
         clearInterval(myVar);
 }
+
 
 // EVENT LISTENERS --------------------------------------
 
@@ -166,29 +273,50 @@ quizMenu.addEventListener("click", function(event) {
 startButton.addEventListener("click", function(event) {
     startTimer();
     startButton.setAttribute("style", "display: none");
-    if(gameMode === 1) {
-        //add functionality to when clicked to add score to highscores
-    }
 })
 
 restartButton.addEventListener("click", function(event) {
     if(gameMode === 1) {
         location.reload();
     }
-    
 })
 
 highscoreSubmit.addEventListener("click", function(event) {
     if(gameMode === 1) {
+<<<<<<< HEAD
         console.log(inputSection.value);
         //store value in session storage/local storage
         //reload page
         //call function to manage/organize the highscore page
+=======
+        console.log(highscoreInput.value);
+        console.log(time);
+        //logs highscore details in console
+        if(highscoreInput.value) {
+            user.push(highscoreInput.value.trim());
+            scores.push(time);
+        }
+        
+        highscoreInput.value = "";
+
+        storeHighscores();
+        renderHighscores();
+>>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
     }
 })
 
-init();
+highScoreView.addEventListener("click", function(event) {
+    if (user.length > 0) {
+        highscoreList.setAttribute("style", "display: ")
+    } else {
+        alert("Highscore list empty")
+    }
+    
+})
 
+
+
+init();
 
 
 
