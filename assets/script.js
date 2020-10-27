@@ -66,6 +66,20 @@ var options = [{
 
     },
     {
+    question: "Primitive types are passed by :",
+    choices: ["Value", "Pointer", "Reference", "Email"],
+    images:[""],
+    correct: 0,
+
+    },
+    {
+    question: "Which is not a primitive data type in JavaScript?",
+    choices: ["Boolean", "Number", "String", "Character"],
+    images:[""],
+    correct: 3,
+
+    },
+    {
     question: "GAME OVER",
     choices: [""],
     images:[""],
