@@ -14,15 +14,6 @@ var restartButton = document.querySelector("#restartButton");
 var quizTime = document.querySelector(".timer");
 //targets the timer element
 
-<<<<<<< HEAD
-var highscoreList = document.querySelector(".highscoreList");
-
-//highscoreList is the UL, then select off that using highscoreItems to iterate through list tags
-
-var inputSection = document.querySelector(".highscoreInputSection");
-//targets highscore submit section after gameover
-
-=======
 var inputSection = document.querySelector(".highscoreInputSection");
 //targets highscore submit section after gameover
 var highscoreInput = document.querySelector(".highscoreInput");
@@ -31,7 +22,6 @@ var highscoreList = document.querySelector(".highscoreList");
 var highscoreItems = highscoreList.getElementsByTagName("li");
 var highscoreScores = highscoreList.getElementsByTagName("p");
 //TO ITERATE THROUGH document elements - highscoreList is the UL, then you have to select off it using the prev variable and getElementsbyTagName only (queryselector doesnt work)
->>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
 
@@ -50,16 +40,11 @@ var misses = 0;
 var gameMode = 0;
 //gamemode is 0 while active, and it is zero when game over
 
-<<<<<<< HEAD
-var myVar = 0; 
-//timing function variable
-=======
 var myVar = 0;
 
 var user = [];
 
 var scores = [];
->>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
 
 var usersRanked = [];
 var scoresRanked = [];
@@ -287,12 +272,6 @@ restartButton.addEventListener("click", function(event) {
 
 highscoreSubmit.addEventListener("click", function(event) {
     if(gameMode === 1) {
-<<<<<<< HEAD
-        console.log(inputSection.value);
-        //store value in session storage/local storage
-        //reload page
-        //call function to manage/organize the highscore page
-=======
         console.log(highscoreInput.value);
         console.log(time);
         //logs highscore details in console
@@ -305,7 +284,6 @@ highscoreSubmit.addEventListener("click", function(event) {
 
         storeHighscores();
         renderHighscores();
->>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
     }
 })
 
