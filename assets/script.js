@@ -19,9 +19,9 @@ var inputSection = document.querySelector(".highscoreInputSection");
 var highscoreInput = document.querySelector(".highscoreInput");
 //targets higschore submit input box
 var highscoreList = document.querySelector(".highscoreList");
-var highscoreItem = highscoreList.querySelector(".highscoreItem");
-var highscoreScore = highscoreItem.querySelector(".userHighScore");
-//highscoreList is the UL, then select off that using highscoreItems to iterate through list tags, then highscore off that
+var highscoreItems = highscoreList.getElementsByTagName("li");
+var highscoreScores = highscoreList.getElementsByTagName("p");
+//TO ITERATE THROUGH document elements - highscoreList is the UL, then you have to select off it using the prev variable and getElementsbyTagName only (queryselector doesnt work)
 var highscoreSubmit = document.querySelector(".highscoreSubmit");
 //targets the highscore submit button to add initials to scoreboard
 
@@ -139,10 +139,16 @@ function renderHighscores() {
 
     var usersRanked = [];
     var scoresRanked = [];
+
+    var highestScore = 0;
+    var highestUser = "";
     
-    for (let i = 0; i < scores.length; i++) {
-         
+    //Loop through highscoreItems and sets text content to user and score, listing 3 people (not in order)
+    for (let i = 0; i < highscoreItems.length; i++) {
+        highscoreItems[i].textContent = scores[i] + " - " + user[i];
     }
+    
+    // console.log(scoresRanked);
     
 }
 
