@@ -68,8 +68,7 @@ var options = [{
     images:[""],
     correct: 99999999999,
     
-    }
-]
+    }]
 
 
 //PRIMARY GAME FUNCTIONS (INITIALIZE GAME STATE, RENDER QUESTION/OPTIONS, CHECK ANSWER) --------------------------------------
@@ -79,7 +78,7 @@ function init () {
     restartButton.setAttribute("style", "display: none");
     inputSection.setAttribute("style", "display: none");
 
-    //this checks session storage on initialize to get existing users and their scores, if they're both not empy it will add this data to key variables
+    //this checks session storage on initialize to get existing users and their scores, if they're both not empty it will add this data to global variables
     var storedUsers = JSON.parse(sessionStorage.getItem("user"));
     var storedScores = JSON.parse(sessionStorage.getItem("score"));
     if (storedUsers !== null && storedScores !== null) {
@@ -135,10 +134,16 @@ function storeHighscores () {
 }
 
 function renderHighscores() {
-    //this section will render the highscores to the page
-    var users = JSON.parse(localStorage.getItem("user"));
-    var scores = JSON.parse(localStorage.getItem("score"));
-    highscoreItem.textContent = users + " " + scores;
+    console.log(user);
+    console.log(scores);
+
+    var usersRanked = [];
+    var scoresRanked = [];
+    
+    for (let i = 0; i < scores.length; i++) {
+         
+    }
+    
 }
 
 
@@ -206,8 +211,11 @@ highscoreSubmit.addEventListener("click", function(event) {
         console.log(highscoreInput.value);
         console.log(time);
         //logs highscore details in console
-        user.push(highscoreInput.value.trim());
-        scores.push(time);
+        if(highscoreInput.value) {
+            user.push(highscoreInput.value.trim());
+            scores.push(time);
+        }
+        
         highscoreInput.value = "";
 
         storeHighscores();
