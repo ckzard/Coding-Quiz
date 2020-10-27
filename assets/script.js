@@ -50,16 +50,11 @@ var misses = 0;
 var gameMode = 0;
 //gamemode is 0 while active, and it is zero when game over
 
-<<<<<<< HEAD
-var myVar = 0; 
-//timing function variable
-=======
 var myVar = 0;
 
 var user = [];
 
 var scores = [];
->>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
 
 var usersRanked = [];
 var scoresRanked = [];
@@ -287,12 +282,6 @@ restartButton.addEventListener("click", function(event) {
 
 highscoreSubmit.addEventListener("click", function(event) {
     if(gameMode === 1) {
-<<<<<<< HEAD
-        console.log(inputSection.value);
-        //store value in session storage/local storage
-        //reload page
-        //call function to manage/organize the highscore page
-=======
         console.log(highscoreInput.value);
         console.log(time);
         //logs highscore details in console
@@ -305,7 +294,6 @@ highscoreSubmit.addEventListener("click", function(event) {
 
         storeHighscores();
         renderHighscores();
->>>>>>> 1996e8e4eaa6ba4d55a9c94d28f1e2a90fc55fd0
     }
 })
 
