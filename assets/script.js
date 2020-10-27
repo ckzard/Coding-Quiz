@@ -161,9 +161,26 @@ function renderHighscores() {
     var highestScore = 0;
     var highestUser = "";
 
-    for (let i = 0; i < scores.length; i++) {
-        var userScore = scores[i];
-        var userUser = user[i];
+    for (let i = 0; i < scores.length; i++) {   
+        highestScore = Math.max(...scores);
+        console.log(highestScore) 
+        for (let i = 0; i < scores.length; i++) {
+            if (scores[i] === highestScore) {
+                highestUser = user[i];
+                user.splice(i, 1);
+                scores.splice(i, 1);
+            }
+        }
+        usersRanked.push(highestUser);
+        scoresRanked.push(highestScore);
+    }
+    console.log(usersRanked);
+    console.log(scoresRanked)
+
+    for (let i = 0; i < scoresRanked.length; i++) {
+
+        var userScore = scoresRanked[i];
+        var userUser = usersRanked[i];
 
         var li = document.createElement("li");
         var p = document.createElement("p");
