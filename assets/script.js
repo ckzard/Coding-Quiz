@@ -183,8 +183,8 @@ function renderHighscores() {
         highscoreList.appendChild(li);
   
     }
-    // console.log(scoresRanked);
-    // console.log(usersRanked);
+    console.log(user)
+    console.log(scores);
     
 }
 
@@ -249,8 +249,6 @@ quizMenu.addEventListener("click", function(event) {
     if (element.matches("button") === true) {
         checkAnswer(element);
         //pass element into checkAnswer function
-        console.log("step is", step);
-        console.log(quizItems.length)
         if(gameMode === 0) {
             renderChoices();
         }
@@ -271,28 +269,24 @@ restartButton.addEventListener("click", function(event) {
 })
 
 highscoreSubmit.addEventListener("click", function(event) {
-    if(gameMode === 1) {
-        console.log(highscoreInput.value);
-        console.log(time);
         //logs highscore details in console
         if(highscoreInput.value) {
             user.push(highscoreInput.value.trim());
             scores.push(time);
-        }
         
         highscoreInput.value = "";
 
         storeHighscores();
-        renderHighscores();
+        // renderHighscores();
     }
 })
 
 highScoreView.addEventListener("click", function(event) {
     console.log(user.length)
-    if (user.length > 0) {
+    if (user.length > 0 && gameMode === 0) {
         highscoreList.setAttribute("style", "display: ")
     } else {
-        alert("Highscore list empty")
+        alert("Either highscore list empty or you need to click restart!")
     }
     
 })
