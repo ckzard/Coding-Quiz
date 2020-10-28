@@ -124,6 +124,9 @@ function renderChoices() {
     if (step == options.length - 1) {
         console.log("GAMEOVER");
         quizChoiceList.setAttribute("style", "display: none");
+        if (time < 0) {
+            time = 0;
+        }
         startButton.textContent = "Score: " + (time); //score CALCULATION
         startButton.setAttribute("style", "display: ");
         restartButton.setAttribute("style", "display: ");
@@ -231,17 +234,24 @@ function startTimer() {
 function myTimer() {
     //stops timer if it reaches 0 or the end of questions
     if (time === 0 || step === options.length - 1) {
+        rightIndicator.setAttribute("style", "display: none");
         quizChoiceList.setAttribute("style", "display: none");
         quizQuestion.textContent = "GAME OVER";
         gameMode = 1;
         startButton.textContent = "Score: " + (time); //score CALCULATION
         startButton.setAttribute("style", "display: ");
-        restartButton.setAttribute("style", "displau: ");
+        restartButton.setAttribute("style", "display: ");
         myStopFunction();
         
     } else {
         time--;
-        quizTime.textContent = time;
+        if (time >= 0) {
+            quizTime.textContent = time;
+        } else {
+            time = 0;
+            quizTime.textContent = time;
+        }
+        
     }
 }
 
@@ -269,8 +279,11 @@ quizMenu.addEventListener("click", function(event) {
 });
 
 startButton.addEventListener("click", function(event) {
+    if (gameMode === 0) {
     startTimer();
     startButton.setAttribute("style", "display: none");
+    }
+    
 })
 
 restartButton.addEventListener("click", function(event) {
@@ -299,8 +312,6 @@ highScoreView.addEventListener("click", function(event) {
     }
     
 })
-
-
 
 init();
 
