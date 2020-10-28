@@ -46,11 +46,11 @@ var user = [];
 
 var scores = [];
 
-var usersRanked = [];
-var scoresRanked = [];
+// var usersRanked = [];
+// var scoresRanked = [];
 
-var highestScore = 0;
-var highestUser = "";
+// var highestScore = 0;
+// var highestUser = "";
 
 //list of question/choices objects to cycle through
 var options = [{
@@ -163,7 +163,7 @@ function renderHighscores() {
     console.log(user);
     console.log(scores);
 
-    sortHighscores();
+    // sortHighscores();
 
     console.log(user);
     console.log(scores);
@@ -183,31 +183,31 @@ function renderHighscores() {
         highscoreList.appendChild(li);
   
     }
-    console.log(scoresRanked);
-    console.log(usersRanked);
+    // console.log(scoresRanked);
+    // console.log(usersRanked);
     
 }
 
-function sortHighscores() {
+// function sortHighscores() {
 
-    for (let i = 0; i < scores.length; i++) {   
-        highestScore = Math.max(...scores);
-        console.log(highestScore) 
-        for (let i = 0; i < scores.length; i++) {
-            if (scores[i] === highestScore) {
-                highestUser = user[i];
-                user.splice(i, 1);
-                scores.splice(i, 1);
-            }
-        }
-        usersRanked.push(highestUser);
-        scoresRanked.push(highestScore);
-    }
+//     for (let i = 0; i < scores.length; i++) {   
+//         highestScore = Math.max(...scores);
+//         console.log(highestScore) 
+//         for (let i = 0; i < scores.length; i++) {
+//             if (scores[i] === highestScore) {
+//                 highestUser = user[i];
+//                 user.splice(i, 1);
+//                 scores.splice(i, 1);
+//             }
+//         }
+//         usersRanked.push(highestUser);
+//         scoresRanked.push(highestScore);
+//     }
 
-    user = usersRanked;
-    scores = scoresRanked;
+//     user = usersRanked;
+//     scores = scoresRanked;
     
-}
+// }
 
 
 
