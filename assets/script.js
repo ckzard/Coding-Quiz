@@ -5,6 +5,9 @@ var quizChoiceList = document.querySelector(".quizChoices");
 var quizItems = quizChoiceList.getElementsByTagName("button");
 //quizChoices is the UL, then select off that using quizItems to iterate through list items(***********)
 
+var rightIndicator = document.querySelector(".wrongRight");
+//targets the indicator for whether the user is right based on their selection
+
 var quizMenu = document.querySelector(".quizMenu"); 
 
 var startButton = document.querySelector("#startButton");
@@ -46,6 +49,7 @@ var user = [];
 
 var scores = [];
 
+// Possible variables used for sorting leaderboard from high to low
 // var usersRanked = [];
 // var scoresRanked = [];
 
@@ -101,6 +105,7 @@ function init () {
     restartButton.setAttribute("style", "display: none");
     inputSection.setAttribute("style", "display: none");
     highscoreList.setAttribute("style", "display: none");
+    rightIndicator.setAttribute("style", "display: none");
 
     //this checks session storage on initialize to get existing users and their scores, if they're both not empty it will add this data to global variables
     var storedUsers = JSON.parse(sessionStorage.getItem("user"));
@@ -139,11 +144,15 @@ function checkAnswer(element) {
             if (options[step].correct === i) {
                 console.log("correct");
                 quizMenu.setAttribute("style", "background-color: rgb(80, 214, 147);");
+                rightIndicator.setAttribute("style", "display: ");
+                rightIndicator.textContent = "CORRECT";
                 step++;
             } else {
                 console.log("wrong, try again");
                 //add disabled attribute to buttons after clicked if wrong choice here
                 quizMenu.setAttribute("style", "background-color: rgb(196, 78, 78)");
+                rightIndicator.setAttribute("style", "display: ");
+                rightIndicator.textContent = "WRONG!";
                 time-=10;
             }
         }
@@ -188,6 +197,8 @@ function renderHighscores() {
     
 }
 
+
+// POSSIBLE FUNCTION TO SORT LEADERBOARD FROM HIGH TO LOW
 // function sortHighscores() {
 
 //     for (let i = 0; i < scores.length; i++) {   
