@@ -275,9 +275,7 @@ highscoreSubmit.addEventListener("click", function(event) {
             scores.push(time);
         
         highscoreInput.value = "";
-
         storeHighscores();
-        // renderHighscores();
     }
 })
 
