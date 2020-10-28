@@ -294,13 +294,15 @@ restartButton.addEventListener("click", function(event) {
 
 highscoreSubmit.addEventListener("click", function(event) {
         //logs highscore details in console
-        if(highscoreInput.value) {
+        if(highscoreInput.value && time > 0) {
             user.push(highscoreInput.value.trim());
             scores.push(time);
         
         highscoreInput.value = "";
         storeHighscores();
-    }
+        } else {
+            alert("SCOREBOARD NOT UPDATED (either you did not enter your initials or your score is 0)")
+        }
 })
 
 highScoreView.addEventListener("click", function(event) {
